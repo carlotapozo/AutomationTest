@@ -20,7 +20,10 @@ import { chromium } from '@playwright/test';
   // Step 5: Take a screenshot of the Wikipedia page
   await page.getByRole('link', { name: 'History', exact: true }).click();
   await page.getByRole('link', { name: 'Early history' }).click();
-  await page.screenshot({ path: 'screenshots/wikipedia_automation.png'});
+
+  const timestamp = new Date().toISOString().replace(/[-:T]/g, '_').split('.')[0];
+  const screenshotPath = `screenshots/wikipedia_automation_${timestamp}.png`;
+  await page.screenshot({ path: screenshotPath}); 
 
   // Step 6 : Close the browser
   await browser.close();
